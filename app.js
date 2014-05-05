@@ -127,6 +127,7 @@ app.get('/regions/:region_id/routes/:route_id/vehicles', function(req, res) {
     });
 });
 
-var server = app.listen(3000, function() {
+var port = Number(process.env.PORT || 3000);
+var server = app.listen(port, function() {
   console.log('Listening on port %d', server.address().port);
 });
