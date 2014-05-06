@@ -8,12 +8,12 @@ syncromatics.regions = function(options, callback) {
   request
     .get(host + '/regions')
     .accept('json')
-    .end(function(res) {
-      if (res.error) {
-        callback({error: res.error});
+    .end(function(err, res) {
+      if (err) {
+        callback(err);
       } else {
         var regions = res.body;
-        callback(regions);
+        callback(null, regions);
       }
     });
 }
@@ -24,15 +24,15 @@ syncromatics.region = function(options, callback) {
   request
     .get(host + '/regions')
     .accept('json')
-    .end(function(res) {
-      if (res.error) {
-        callback({error: res.error});
+    .end(function(err, res) {
+      if (err) {
+        callback(err);
       } else {
         var region = _.findWhere(res.body, {ID: regionId});
         if (region) {
-          callback(region);
+          callback(null, region);
         } else {
-          callback({});
+          callback(null, {});
         }
       }
     });
@@ -44,12 +44,12 @@ syncromatics.routes = function(options, callback) {
   request
     .get(host + '/region/' + regionId + '/routes')
     .accept('json')
-    .end(function(res) {
-      if (res.error) {
-        callback({error: res.error});
+    .end(function(err, res) {
+      if (err) {
+        callback(err);
       } else {
         var routes = res.body;
-        callback(routes);
+        callback(null, routes);
       }
     });
 };
@@ -61,15 +61,15 @@ syncromatics.route = function(options, callback) {
   request
     .get(host + '/region/' + regionId + '/routes')
     .accept('json')
-    .end(function(res) {
-      if (res.error) {
-        callback({error: res.error});
+    .end(function(err, res) {
+      if (err) {
+        callback(err);
       } else {
         var route = _.findWhere(res.body, {ID: routeId});
         if (route) {
-          callback(route);
+          callback(null, route);
         } else {
-          callback({});
+          callback(null, {});
         }
       }
     });
@@ -82,12 +82,12 @@ syncromatics.waypoints = function(options, callback) {
   request
     .get(host + '/route/' + routeId + '/waypoints')
     .accept('json')
-    .end(function(res) {
-      if (res.error) {
-        callback({error: res.error});
+    .end(function(err, res) {
+      if (err) {
+        callback(err);
       } else {
         var waypoints = _.first(res.body);
-        callback(waypoints);
+        callback(null, waypoints);
       }
     });
 };
@@ -100,12 +100,12 @@ syncromatics.stops = function(options, callback) {
   request
     .get(host + '/route/' + routeId + '/direction/' + directionId + '/stops')
     .accept('json')
-    .end(function(res) {
-      if (res.error) {
-        callback({error: res.error});
+    .end(function(err, res) {
+      if (err) {
+        callback(err);
       } else {
         var stops = res.body;
-        callback(stops);
+        callback(null, stops);
       }
     });
 }
@@ -117,12 +117,12 @@ syncromatics.vehicles = function(options, callback) {
   request
     .get(host + '/route/' + routeId + '/vehicles')
     .accept('json')
-    .end(function(res) {
-      if (res.error) {
-        callback({error: res.error});
+    .end(function(err, res) {
+      if (err) {
+        callback(err);
       } else {
         var vehicles = res.body;
-        callback(vehicles);
+        callback(null, vehicles);
       }
     });
 };

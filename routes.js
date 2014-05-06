@@ -17,7 +17,7 @@ router.route('/regions')
     var options = {
       host: req.app.get('syncromatics-host')
     }
-    syncromatics.regions(options, function(regions) {
+    syncromatics.regions(options, function(error, regions) {
       res.json(regions);
     });
   });
@@ -28,7 +28,7 @@ router.route('/regions/:regionId')
       host: req.app.get('syncromatics-host'),
       regionId: req.params.regionId
     };
-    syncromatics.region(options, function(region) {
+    syncromatics.region(options, function(error, region) {
       res.json(region);
     });
   });
@@ -39,7 +39,7 @@ router.route('/regions/:regionId/routes')
       host: req.app.get('syncromatics-host'),
       regionId: req.params.regionId
     };
-    syncromatics.routes(options, function(routes) {
+    syncromatics.routes(options, function(error, routes) {
       res.json(routes);
     });
   });
@@ -51,7 +51,7 @@ router.route('/regions/:regionId/routes/:routeId')
       regionId: req.params.regionId,
       routeId: req.params.routeId
     };
-    syncromatics.route(options, function(route) {
+    syncromatics.route(options, function(error, route) {
       res.json(route);
     });
   });
@@ -63,7 +63,7 @@ router.route('/regions/:regionId/routes/:routeId/waypoints')
       regionId: req.params.regionId,
       routeId: req.params.routeId
     };
-    syncromatics.waypoints(options, function(waypoints) {
+    syncromatics.waypoints(options, function(error, waypoints) {
       res.json(waypoints);
     });
   });
@@ -76,7 +76,7 @@ router.route('/regions/:regionId/routes/:routeId/direction/:directionId/stops')
       routeId: req.params.routeId,
       directionId: req.params.directionId
     };
-    syncromatics.stops(options, function(stops) {
+    syncromatics.stops(options, function(error, stops) {
       res.json(stops);
     });
   });
@@ -88,7 +88,7 @@ router.route('/regions/:regionId/routes/:routeId/vehicles')
       regionId: req.params.regionId,
       routeId: req.params.routeId
     };
-    syncromatics.vehicles(options, function(vehicles) {
+    syncromatics.vehicles(options, function(error, vehicles) {
       res.json(vehicles);
     });
   });
