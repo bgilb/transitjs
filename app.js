@@ -1,6 +1,5 @@
 var express = require('express');
 var logger = require('morgan');
-var request = require('superagent');
 
 var app = express();
 app.use(logger('dev'));
