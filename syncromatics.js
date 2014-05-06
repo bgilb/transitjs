@@ -6,7 +6,7 @@ var syncromatics = {};
 syncromatics.regions = function(options, callback) {
   var host = options.host;
   request
-    .get(host+'/regions')
+    .get(host + '/regions')
     .accept('json')
     .end(function(res) {
       if (res.error) {
@@ -22,7 +22,7 @@ syncromatics.region = function(options, callback) {
   var host = options.host;
   var regionId = Number(options.regionId);
   request
-    .get(host+'/regions')
+    .get(host + '/regions')
     .accept('json')
     .end(function(res) {
       if (res.error) {
@@ -42,7 +42,7 @@ syncromatics.routes = function(options, callback) {
   var host = options.host;
   var regionId = Number(options.regionId);
   request
-    .get(host+'/region/' + regionId + '/routes')
+    .get(host + '/region/' + regionId + '/routes')
     .accept('json')
     .end(function(res) {
       if (res.error) {
@@ -59,7 +59,7 @@ syncromatics.route = function(options, callback) {
   var regionId = Number(options.regionId);
   var routeId = Number(options.routeId);
   request
-    .get(host+'/region/' + regionId + '/routes')
+    .get(host + '/region/' + regionId + '/routes')
     .accept('json')
     .end(function(res) {
       if (res.error) {
@@ -80,7 +80,7 @@ syncromatics.waypoints = function(options, callback) {
   var regionId = Number(options.regionId);
   var routeId = Number(options.routeId);
   request
-    .get(host+'/route/' + routeId + '/waypoints')
+    .get(host + '/route/' + routeId + '/waypoints')
     .accept('json')
     .end(function(res) {
       if (res.error) {
