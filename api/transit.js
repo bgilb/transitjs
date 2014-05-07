@@ -1,6 +1,6 @@
 module.exports = function(host) {
   var transit = {};
-  var syncromatics = require('./syncromatics');
+  var syncromatics = require('../lib/syncromatics');
 
   transit.setOptions = function(id) {
     return function(req, res, next) {

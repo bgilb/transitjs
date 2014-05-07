@@ -4,8 +4,8 @@ var logger = require('morgan');
 var app = express();
 app.use(logger('dev')); // dev is for color logs
 
-var routes = require('./routes');
-app.use(routes);
+var api = require('./api');
+app.use(api);
 
 // must be a 404 if the routes don't respond
 app.use(function(req, res, next) {

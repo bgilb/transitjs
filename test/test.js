@@ -3,7 +3,7 @@ var testserver = require('./testserver');
 
 testserver.listen(9000);
 
-var syncromatics = require('../syncromatics');
+var syncromatics = require('../lib/syncromatics');
 describe('syncromatics', function(){
   describe('#regions', function(){
     it('should return a list of available regions', function(done) {
