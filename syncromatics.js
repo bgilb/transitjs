@@ -76,6 +76,24 @@ syncromatics.vehicles = function(options, callback) {
     .end(handle(callback));
 };
 
+syncromatics.get = function(options, callback) {
+  if (options.id === 'regions') {
+    return syncromatics.regions(options, callback);
+  } else if (options.id === 'region') {
+    return syncromatics.region(options, callback);
+  } else if (options.id === 'routes') {
+    return syncromatics.routes(options, callback);
+  } else if (options.id === 'route') {
+    return syncromatics.route(options, callback);
+  } else if (options.id === 'waypoints') {
+    return syncromatics.waypoints(options, callback);
+  } else if (options.id === 'stops') {
+    return syncromatics.stops(options, callback);
+  } else if (options.id === 'vehicles') {
+    return syncromatics.vehicles(options, callback);
+  }
+}
+
 function handle(callback, handleResult) {
   return function(err, res) {
     if (err || res.error) {
