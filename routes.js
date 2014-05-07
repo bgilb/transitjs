@@ -1,96 +1,33 @@
-
-// Regions:   /regions
-// Region:    /regions/<int:region_id>
-// Routes:    /regions/<int:region_id>/routes
-// Route:     /regions/<int:region_id>/routes/<int:route_id>
-// Waypoints: /regions/<int:region_id>/routes/<int:route_id>/waypoints
-// Stops:     /regions/<int:region_id>/routes/<int:route_id>/direction/<int:direction_id>/stops
-// Vehicles:  /regions/<int:region_id>/routes/<int:route_id>/vehicles
-
-var express = require('express');
-
-var router = express.Router();
-var syncromatics = require('./syncromatics');
+var router = require('express').Router();
+var transit = require('./transit')('http://www.pennrides.com');
 
 router.route('/regions')
-  .get(function(req, res) {
-    var options = {
-      host: req.app.get('syncromatics-host')
-    }
-    syncromatics.regions(options, function(error, regions) {
-      res.json(regions);
-    });
-  });
+  .get(transit.setOptions('regions'), transit.loadData);
 
 router.route('/regions/:regionId')
-  .get(function(req, res) {
-    var options = {
-      host: req.app.get('syncromatics-host'),
-      regionId: req.params.regionId
-    };
-    syncromatics.region(options, function(error, region) {
-      res.json(region);
-    });
-  });
+  .get(transit.setOptions('region'), transit.loadData);
 
 router.route('/regions/:regionId/routes')
-  .get(function(req, res) {
-    var options = {
-      host: req.app.get('syncromatics-host'),
-      regionId: req.params.regionId
-    };
-    syncromatics.routes(options, function(error, routes) {
-      res.json(routes);
-    });
-  });
+  .get(transit.setOptions('routes'), transit.loadData);
 
 router.route('/regions/:regionId/routes/:routeId')
-  .get(function(req, res) {
-    var options = {
-      host: req.app.get('syncromatics-host'),
-      regionId: req.params.regionId,
-      routeId: req.params.routeId
-    };
-    syncromatics.route(options, function(error, route) {
-      res.json(route);
-    });
-  });
+  .get(transit.setOptions('route'), transit.loadData);
 
 router.route('/regions/:regionId/routes/:routeId/waypoints')
-  .get(function(req, res) {
-    var options = {
-      host: req.app.get('syncromatics-host'),
-      regionId: req.params.regionId,
-      routeId: req.params.routeId
-    };
-    syncromatics.waypoints(options, function(error, waypoints) {
-      res.json(waypoints);
-    });
-  });
+  .get(transit.setOptions('waypoints'), transit.loadData);
 
 router.route('/regions/:regionId/routes/:routeId/direction/:directionId/stops')
-  .get(function(req, res) {
-    var options = {
-      host: req.app.get('syncromatics-host'),
-      regionId: req.params.regionId,
-      routeId: req.params.routeId,
-      directionId: req.params.directionId
-    };
-    syncromatics.stops(options, function(error, stops) {
-      res.json(stops);
-    });
-  });
+  .get(transit.setOptions('stops'), transit.loadData);
 
 router.route('/regions/:regionId/routes/:routeId/vehicles')
-  .get(function(req, res) {
-    var options = {
-      host: req.app.get('syncromatics-host'),
-      regionId: req.params.regionId,
-      routeId: req.params.routeId
-    };
-    syncromatics.vehicles(options, function(error, vehicles) {
-      res.json(vehicles);
-    });
-  });
+  .get(transit.setOptions('vehicles'), transit.loadData);
+
+router.use(function(req, res, next) {
+  if (req.transitData) {
+    res.json(req.transitData);
+  } else {
+    next();
+  }
+})
 
 module.exports = router;
