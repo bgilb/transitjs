@@ -1,5 +1,5 @@
 # transitjs
-Wrapper api for getting data from the [syncromatics](http://syncromatics.com) transit servers. Currently used to provide the transit data for the iPhone app [PennTransit](https://itunes.apple.com/hk/app/penntransit/id737534948?mt=8), but could be extended to other transit systems which use syncromatics.
+Nodejs server for transportation data. Currently used as an api to get data to the iPhone app [PennTransit](https://itunes.apple.com/hk/app/penntransit/id737534948?mt=8).
 
 # install
 To install dependencies, from the root directory run
